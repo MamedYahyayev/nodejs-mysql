@@ -4,7 +4,13 @@
       <li class="main-header__item">
         <a href="/" class="<%= (path === '/') ? 'active' : '' %>">Home</a>
       </li>
-      <li class="main-header__item"><a href="#">Employees</a></li>
+      <li class="main-header__item">
+        <a
+          href="/employees"
+          class="<%= (path === '/employees') ? 'active' : '' %>"
+          >Employees</a
+        >
+      </li>
       <li class="main-header__item"><a href="#">Hire me</a></li>
       <li class="main-header__item"><a href="#">Notifications</a></li>
     </ul>
