@@ -1,0 +1,6 @@
+1. Create a util file to connect db
+2. Configure express and node in app.js file and start application
+3. Configure views folder, json parser, static files
+4. Create models for db tables
+5. Create ejs files ( includes ), navigation, end, head
+6. Create 4 pages ( home, employees, hire me, notifications)
