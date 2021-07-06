@@ -4,30 +4,36 @@
   <body>
 <%- include('includes/navigation.ejs') %>
 
+<% if(employees.length > 0) { %>
     <main class="employee-list">
-      <div class="employee-card">
-        <div class="card-header">
-          <h1>Samire Samirova</h1>
-        </div>
-        <div class="card-content">
-            <div class="card-image">
-                <img
-                  src="https://lh3.googleusercontent.com/proxy/NzYb-CfZMVHhO_I9gB3Os2EbJCluqQy-WjNQNbUR9Mug00NEZcDcAMcnmLf6SOrmFR8EqOHKAQhCWTc-nHzDroPn0sjeUyUNWrVGua-wmVl23dXzRpTp6dFH1fRHJAu2kjrBKC2hq6kUG-Vt99qQUA"
-                  alt="employee-img/"
-                />
-                <!-- print employee name in the alt  employee.name  -->
-              </div>
-        </div>
-        
-        <div class="card-footer">
-          <p>Very talented employee</p>
-          <p>$500</p>
-          <button class="card-btn">Details</button>
-          <!-- if employee is working in the company then show end contract button otherwise show hire me button -->
-          <button class="card-btn">Hire me</button>
-          <button class="card-btn">End contract</button>
-        </div>
-      </div>    
+      <% for (let employee of employees) { %>
+        <div class="employee-card">
+          <div class="card-header">
+            <h1><%= employee.name%> <%= employee.surname%></h1>
+          </div>
+          <div class="card-content">
+              <div class="card-image">
+                  <img
+                    src="<%= employee.image_url %>"
+                    alt="employee-img/<%= employee.name %>"
+                  />
+                  <!-- print employee name in the alt  employee.name  -->
+                </div>
+          </div>
+          
+          <div class="card-footer">
+            <p><%= employee.description %></p>
+            <p>$<%= employee.salary %></p>
+            <button class="card-btn">Details</button>
+            <!-- if employee is working in the company then show end contract button otherwise show hire me button -->
+            <button class="card-btn">Hire me</button>
+            <button class="card-btn">End contract</button>
+          </div>
+        </div>   
+      <% } } else { %>
+        <h1>No Employee</h1>
+      <% } %>
+
       </div>
     </main>
 

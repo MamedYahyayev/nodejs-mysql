@@ -6,6 +6,7 @@ const port = 3000;
 
 // routes
 const indexRoutes = require('./routes/index');
+const employeeRoutes = require('./routes/employee');
 
 // static files
 app.use(express.static(path.join(__dirname, "public")));
@@ -18,7 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-
 app.use(indexRoutes);
+app.use(employeeRoutes);
 
 app.listen(port, () => console.log(`app listening on port ${port}`));
