@@ -46,3 +46,32 @@
   background-color: #00695c;
   color: white;
 }
+
+
+.employee-form {
+  width: 20rem;
+  max-width: 90%;
+  margin: auto;
+  display: block;
+}
+
+.employee-item {
+  width: 20rem;
+  max-width: 95%;
+  margin: 1rem;
+}
+
+.employee__title {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.employee__price {
+  text-align: center;
+  color: #4d4d4d;
+  margin-bottom: 0.5rem;
+}
+
+.employee__description {
+  text-align: center;
+}

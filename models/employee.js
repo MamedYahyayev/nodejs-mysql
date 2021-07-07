@@ -13,4 +13,11 @@ module.exports = class Employee {
   static getAllEmployees() {
     return db.execute("select * from employees");
   }
+
+  saveEmployee() {
+    return db.execute(
+      "INSERT INTO employees (name, surname, salary, description, image_url) VALUES(?,?,?,?,?)",
+      [this.name, this.surname, this.salary, this.description, this.imageUrl]
+    );
+  }
 };

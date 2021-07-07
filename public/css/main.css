@@ -44,3 +44,46 @@ body {
 .main-header__item a.active {
   color: #ffeb3b;
 }
+
+/* dropdown menu for employees */
+.dropdown-menu {
+  position: absolute;
+  left: 6em;
+  top: 3em;
+  padding: 0.3em;
+  background-color: #081311;
+  border-radius: 0.5em;
+}
+
+.not-visible {
+  display: none;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.25rem 1rem;
+  text-decoration: none;
+  font: inherit;
+  border: 1px solid #00695c;
+  color: #00695c;
+  background: white;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: #00695c;
+  color: white;
+}
+
+.btn.danger {
+  color: red;
+  border-color: red;
+}
+
+.btn.danger:hover,
+.btn.danger:active {
+  background: red;
+  color: white;
+}
