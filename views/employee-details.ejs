@@ -1,0 +1,40 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/employee-details.css">
+</head>
+
+<body>
+<%- include('includes/navigation.ejs') %>
+
+    <main class="employee-details">
+        <div class="image-area">
+            <img src="<%= employee.image_url %>" alt="empimage/<%= employee.name %>">
+        </div>
+        <div class="details">
+            <div class="form-control">
+                <label for="title">Name</label>
+                <input type="text" name="name" id="name" value="<%= employee.name %>">
+            </div>
+
+            <div class="form-control">
+                <label for="title">Surname</label>
+                <input type="text" name="surname" id="surname" value="<%= employee.surname %>">
+            </div>
+
+
+            <div class="form-control">
+                <label for="salary">Salary</label>
+                <input type="number" name="salary" id="salary" step="0.01" value="<%= employee.salary %>">
+            </div>
+
+
+            <div class="form-control">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" rows="5"><%= employee.description %></textarea>
+            </div>
+
+        </div>
+    </main>    
+
+
+<%- include('includes/end.ejs') %>

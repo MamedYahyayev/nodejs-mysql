@@ -10,4 +10,9 @@ router.get("/add-employee", employeeController.getAddEmployeePage);
 
 router.post("/add-employee", employeeController.addEmployee);
 
+router.get(
+  "/employee-details/:employeeId",
+  employeeController.getEmployeeDetailsPage
+);
+
 module.exports = router;

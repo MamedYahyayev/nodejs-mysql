@@ -18,6 +18,19 @@ exports.getAddEmployeePage = (req, res, next) => {
   res.render("add-employee", { pageTitle: "Add Employee", path: "/employees" });
 };
 
+exports.getEmployeeDetailsPage = (req, res, next) => {
+  const employeeId = req.params.employeeId;
+  Employee.getEmployeeById(employeeId)
+    .then(([employee]) => {
+      res.render("employee-details", {
+        employee: employee[0],
+        pageTitle: "Employee Details",
+        path: "/employees",
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
 exports.addEmployee = (req, res, next) => {
   const { name, surname, salary, description, imageUrl } = req.body;
   const employee = new Employee(

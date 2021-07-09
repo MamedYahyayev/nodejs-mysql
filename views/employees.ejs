@@ -24,7 +24,7 @@
           <div class="card-footer">
             <p><%= employee.description %></p>
             <p>$<%= employee.salary %></p>
-            <button class="card-btn">Details</button>
+            <a class="card-btn" href="/employee-details/<%= employee.id %>">Details</a>
             <!-- if employee is working in the company then show end contract button otherwise show hire me button -->
             <button class="card-btn">Hire me</button>
             <button class="card-btn">End contract</button>

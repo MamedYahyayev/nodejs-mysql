@@ -14,6 +14,10 @@ module.exports = class Employee {
     return db.execute("select * from employees");
   }
 
+  static getEmployeeById(id) {
+    return db.execute("select * from employees where id = ?", [id]);
+  }
+
   saveEmployee() {
     return db.execute(
       "INSERT INTO employees (name, surname, salary, description, image_url) VALUES(?,?,?,?,?)",
