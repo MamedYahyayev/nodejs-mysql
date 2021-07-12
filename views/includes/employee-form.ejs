@@ -1,0 +1,27 @@
+<div class="form-control">
+    <label for="title">Name</label>
+    <input type="text" name="name" id="name" value="<%= employee.name %>" <%= (editing === true) ? '' : 'disabled' %>>
+</div>
+
+<div class="form-control">
+    <label for="title">Surname</label>
+    <input type="text" name="surname" id="surname" value="<%= employee.surname %>" <%= (editing === true) ? '' : 'disabled' %>>
+</div>
+
+
+<div class="form-control">
+    <label for="title">Image Url</label>
+    <input type="text" name="imageUrl" id="imageUrl" value="<%= employee.image_url %>" <%= (editing === true) ? '' : 'disabled' %>>
+</div>
+
+
+<div class="form-control">
+    <label for="salary">Salary</label>
+    <input type="number" name="salary" id="salary" step="0.01" value="<%= employee.salary %>" <%= (editing === true) ? '' : 'disabled' %>>
+</div>
+
+
+<div class="form-control">
+    <label for="description">Description</label>
+    <textarea name="description" id="description" rows="5" <%= (editing === true) ? '' : 'disabled' %>><%= employee.description %></textarea>
+</div>

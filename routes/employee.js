@@ -15,4 +15,10 @@ router.get(
   employeeController.getEmployeeDetailsPage
 );
 
+router.get('/edit-employee/:employeeId', employeeController.getEditEmployeePage)
+
+router.post('/edit-employee', employeeController.updateEmployee);
+
+router.post('/delete-employee', employeeController.deleteEmployee);
+
 module.exports = router;

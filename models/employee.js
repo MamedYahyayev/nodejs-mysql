@@ -24,4 +24,18 @@ module.exports = class Employee {
       [this.name, this.surname, this.salary, this.description, this.imageUrl]
     );
   }
+
+  updateEmployee() {
+    return db.execute(
+      "UPDATE employees SET name=?, surname=?, salary=?, description=? WHERE id=?",
+      [this.name, this.surname, this.salary, this.description, this.id]
+    );
+  }
+
+  static deleteEmployeeById(id) {
+    return db.execute(
+      "DELETE FROM employees WHERE id=?",
+      [id]
+    );
+  }
 };

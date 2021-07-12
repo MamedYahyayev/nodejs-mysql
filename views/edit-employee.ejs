@@ -11,7 +11,16 @@
             <img src="<%= employee.image_url %>" alt="empimage/<%= employee.name %>">
         </div>
         <div class="details">
-            <%- include('includes/employee-form.ejs') %>
+            
+            <form action="/edit-employee" method="post">
+                <%- include('includes/employee-form.ejs') %>
+
+                <input type="hidden" name="employeeId" value="<%= employee.id %>">
+
+            <button class="btn" type="submit">Update</button>
+            </form>
+
+        
         </div>
     </main>    
 
