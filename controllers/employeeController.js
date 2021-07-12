@@ -1,17 +1,15 @@
 const Employee = require("../models/employee");
 
 exports.getEmployeesPage = (req, res, next) => {
-  Employee.getAllEmployees()
-    .then(([rows, fieldData]) => {
+  Employee.findAll()
+    .then((employees) => {
       res.render("employees", {
         pageTitle: "Employees",
         path: "/employees",
-        employees: rows,
+        employees: employees,
       });
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch((err) => console.log(err));
 };
 
 exports.getAddEmployeePage = (req, res, next) => {
@@ -20,45 +18,42 @@ exports.getAddEmployeePage = (req, res, next) => {
 
 exports.getEmployeeDetailsPage = (req, res, next) => {
   const employeeId = req.params.employeeId;
-  Employee.getEmployeeById(employeeId)
-    .then(([employee]) => {
-      res.render("employee-details", {
-        employee: employee[0],
-        pageTitle: "Employee Details",
-        path: "/employees",
-        editing: false,
-      });
-    })
-    .catch((err) => console.log(err));
+  const view = "employee-details";
+  const pageTitle = "Employee Details";
+  getEditOrDetailsEmployeePage(view, false, pageTitle, employeeId, res);
 };
 
 exports.getEditEmployeePage = (req, res, next) => {
   const employeeId = req.params.employeeId;
-  Employee.getEmployeeById(employeeId)
-    .then(([employee]) => {
-      res.render("edit-employee", {
-        employee: employee[0],
-        pageTitle: "Edit Employee",
+  const view = "edit-employee";
+  const pageTitle = "Edit Employee";
+  getEditOrDetailsEmployeePage(view, true, pageTitle, employeeId, res);
+};
+
+function getEditOrDetailsEmployeePage(viewFile, edit, pageTitle, id, res) {
+  findEmployeeById(id)
+    .then((employee) => {
+      res.render(viewFile, {
+        employee: employee,
+        pageTitle: pageTitle,
         path: "/employees",
-        editing: true,
+        editing: edit,
       });
     })
     .catch((err) => console.log(err));
-};
+}
 
 exports.addEmployee = (req, res, next) => {
   const { name, surname, salary, description, imageUrl } = req.body;
-  const employee = new Employee(
-    null,
+  Employee.create({
     name,
     surname,
     salary,
     description,
-    imageUrl
-  );
-  employee
-    .saveEmployee()
+    imageUrl,
+  })
     .then(() => {
+      console.log("===> Employee Inserted");
       res.redirect("/employees");
     })
     .catch((err) => console.log(err));
@@ -66,24 +61,37 @@ exports.addEmployee = (req, res, next) => {
 
 exports.updateEmployee = (req, res, next) => {
   const { name, surname, salary, description, imageUrl, employeeId } = req.body;
-  const employee = new Employee(
-    employeeId,
-    name,
-    surname,
-    salary,
-    description,
-    imageUrl
-  );
-
-  employee
-    .updateEmployee()
-    .then(() => res.redirect("/employees"))
+  findEmployeeById(employeeId)
+    .then((employee) => {
+      employee.id = employeeId;
+      employee.name = name;
+      employee.surname = surname;
+      employee.salary = salary;
+      employee.description = description;
+      employee.imageUrl = imageUrl;
+      return employee.save();
+    })
+    .then(() => {
+      console.log("===> Employee Updated");
+      res.redirect("/employees");
+    })
     .catch((err) => console.log(err));
 };
 
 exports.deleteEmployee = (req, res, next) => {
   const employeeId = req.body.employeeId;
-  Employee.deleteEmployeeById(employeeId)
-    .then(() => res.redirect("/employees"))
+  Employee.destroy({
+    where: {
+      id: employeeId,
+    },
+  })
+    .then(() => {
+      console.log("===> Employee Deleted");
+      res.redirect("/employees");
+    })
     .catch((err) => console.log(err));
 };
+
+function findEmployeeById(employeeId) {
+  return Employee.findOne({ where: { id: employeeId } });
+}

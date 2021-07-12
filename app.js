@@ -5,8 +5,11 @@ const app = express();
 const port = 3000;
 
 // routes
-const indexRoutes = require('./routes/index');
-const employeeRoutes = require('./routes/employee');
+const indexRoutes = require("./routes/index");
+const employeeRoutes = require("./routes/employee");
+
+// sequelize
+const sequelize = require("./utils/database");
 
 // static files
 app.use(express.static(path.join(__dirname, "public")));
@@ -22,4 +25,9 @@ app.set("views", "views");
 app.use(indexRoutes);
 app.use(employeeRoutes);
 
-app.listen(port, () => console.log(`app listening on port ${port}`));
+sequelize
+  .sync()
+  .then((result) => {
+    app.listen(port, () => console.log(`app listening on port ${port}`));
+  })
+  .catch((err) => console.log(err));
