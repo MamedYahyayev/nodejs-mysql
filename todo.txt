@@ -1,6 +1,6 @@
-1. Create a util file to connect db
-2. Configure express and node in app.js file and start application
-3. Configure views folder, json parser, static files
-4. Create models for db tables
-5. Create ejs files ( includes ), navigation, end, head
-6. Create 4 pages ( home, employees, hire me, notifications)
+Company Management
+
+* Create new model ( Error ): this model will be contain error code, error type and error message and it will be shown
+  when i get the error on catch block
+
+* Change the navigation for employees dropdown menu and add some css
