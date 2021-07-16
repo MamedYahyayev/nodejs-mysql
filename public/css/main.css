@@ -31,7 +31,10 @@ body {
 
 .main-header__item {
   margin: 0 1rem;
-  padding: 0;
+  padding: .1em;
+  height: 70px;
+  display: flex;
+  align-items: center;
 }
 
 .main-header__item a {
@@ -48,15 +51,31 @@ body {
 /* dropdown menu for employees */
 .dropdown-menu {
   position: absolute;
-  left: 6em;
-  top: 3em;
+  width: 150px;
+  left: 0;
+  top: 4em;
   padding: 0.3em;
   background-color: #081311;
-  border-radius: 0.5em;
+  opacity: 0;
+  visibility: hidden;
 }
 
-.not-visible {
-  display: none;
+.dropdown-menu li {
+  list-style-type: none;
+  padding-left: .3em;
+}
+
+.dropdown-item {
+  height: auto;
+}
+
+.main-header__item-list > li:hover ul {
+  opacity: 1;
+  visibility: visible;
+}
+
+#employees-nav-item {
+  position: relative;
 }
 
 .btn {

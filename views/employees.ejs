@@ -27,7 +27,7 @@
             <a class="card-btn" href="/employee-details/<%= employee.id %>">Details</a>
             <!-- if employee is working in the company then show end contract button otherwise show hire me button -->
             <a class="card-btn" href="/edit-employee/<%= employee.id %>">Edit</a>
-            <form action="/delete-employee" method="post">
+            <form action="/delete-employee" method="post" id="delete-employee-form">
               <button class="card-btn">Delete</button>
               <input type="hidden" name="employeeId" value="<%= employee.id %>">
             </form>

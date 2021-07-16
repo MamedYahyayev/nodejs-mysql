@@ -3,4 +3,4 @@ Company Management
 * Create new model ( Error ): this model will be contain error code, error type and error message and it will be shown
   when i get the error on catch block
 
-* Change the navigation for employees dropdown menu and add some css
+* Add new model for employees and this model will be adress and it has one to one relationship with employees

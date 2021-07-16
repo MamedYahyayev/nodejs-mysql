@@ -8,6 +8,10 @@ const port = 3000;
 const indexRoutes = require("./routes/index");
 const employeeRoutes = require("./routes/employee");
 
+// models
+const employee = require('./models/employee');
+const address = require('./models/address');
+
 // sequelize
 const sequelize = require("./utils/database");
 
@@ -24,6 +28,9 @@ app.set("views", "views");
 
 app.use(indexRoutes);
 app.use(employeeRoutes);
+
+// database relations
+
 
 sequelize
   .sync()
