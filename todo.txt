@@ -4,3 +4,5 @@ Company Management
   when i get the error on catch block
 
 * Add new model for employees and this model will be adress and it has one to one relationship with employees
+
+* Add new forms(filling for employee's address) for add employee page.

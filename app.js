@@ -9,8 +9,8 @@ const indexRoutes = require("./routes/index");
 const employeeRoutes = require("./routes/employee");
 
 // models
-const employee = require('./models/employee');
-const address = require('./models/address');
+const Employee = require('./models/employee');
+const Address = require('./models/address');
 
 // sequelize
 const sequelize = require("./utils/database");
@@ -30,10 +30,11 @@ app.use(indexRoutes);
 app.use(employeeRoutes);
 
 // database relations
-
+Employee.hasOne(Address);
+Address.belongsTo(Employee);
 
 sequelize
-  .sync()
+  .sync({force:true})
   .then((result) => {
     app.listen(port, () => console.log(`app listening on port ${port}`));
   })

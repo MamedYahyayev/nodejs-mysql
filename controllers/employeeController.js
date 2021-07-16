@@ -1,4 +1,5 @@
 const Employee = require("../models/employee");
+const Address = require("../models/address");
 
 exports.getEmployeesPage = (req, res, next) => {
   Employee.findAll()
@@ -52,8 +53,17 @@ exports.addEmployee = (req, res, next) => {
     description,
     imageUrl,
   })
+    .then((result) => {
+      const empId = result.dataValues.id;
+      return Address.create({
+        country: "Germany",
+        homeAddress: "Berlin",
+        zipCode: "1234",
+        employeeId: empId,
+      });
+    })
     .then(() => {
-      console.log("===> Employee Inserted");
+      console.log("===> Employee and Address Inserted");
       res.redirect("/employees");
     })
     .catch((err) => console.log(err));
