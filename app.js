@@ -13,6 +13,7 @@ const Employee = require("./models/employee");
 const Address = require("./models/address");
 const Department = require("./models/department");
 const Group = require("./models/group");
+const Student = require("./models/student");
 
 // sequelize
 const sequelize = require("./utils/database");
