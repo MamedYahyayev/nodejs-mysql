@@ -1,0 +1,22 @@
+<%- include('includes/head.ejs') %>
+</head>
+
+<body>
+<%- include('includes/navigation.ejs') %>
+
+    <h1> This is Test page</h1>
+
+    <% if(departments.length !== 0) { %>
+        <div style="margin: 1em">Departments</div>
+        <% for(let department of departments) { %>
+            <p style="margin: 2em;">* <%= department.name %></p>  
+      <% } %>
+    
+      <% } else { %>
+          <p>No departments found</p>
+      <% } %>
+
+<%- include('includes/end.ejs') %>
+
+
+

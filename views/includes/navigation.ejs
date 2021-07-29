@@ -11,11 +11,16 @@
           >Employees</a
         >
         <ul class="dropdown-menu">
-          <li class="main-header__item dropdown-item"><a href="/add-employee">Add Employee</a></li>
+          <li class="main-header__item dropdown-item">
+            <a href="/add-employee">Add Employee</a>
+          </li>
         </ul>
       </li>
       <li class="main-header__item"><a href="#">Hire me</a></li>
       <li class="main-header__item"><a href="#">Notifications</a></li>
+      <li class="main-header__item">
+        <a href="/test" class="<%= (path === '/test') ? 'active' : '' %>">Test</a>
+      </li>
     </ul>
   </nav>
 </header>
