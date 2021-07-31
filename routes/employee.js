@@ -15,10 +15,40 @@ router.get(
   employeeController.getEmployeeDetailsPage
 );
 
-router.get('/edit-employee/:employeeId', employeeController.getEditEmployeePage)
+router.get(
+  "/edit-employee/:employeeId",
+  employeeController.getEditEmployeePage
+);
 
-router.post('/edit-employee', employeeController.updateEmployee);
+router.post("/edit-employee", employeeController.updateEmployee);
 
-router.post('/delete-employee', employeeController.deleteEmployee);
+router.post("/delete-employee", employeeController.deleteEmployee);
+
+router.get("/find-employee-by-salary", employeeController.findEmployeeBySalary);
+
+router.get(
+  "/find-employee-by-salary-between",
+  employeeController.findEmployeeBySalaryBetween
+);
+
+router.get(
+  "/find-employee-by-id-with-in-operator",
+  employeeController.findEmployeeByIdWithInOperator
+);
+
+router.get(
+  "/update-employee-by-surname",
+  employeeController.updateEmployeeBySurname
+);
+
+router.get(
+  "/delete-employee-by-salary-between",
+  employeeController.deleteEmployeeBySalaryBetween
+);
+
+router.get(
+  "/truncate-employee-table",
+  employeeController.truncateEmployeeTable
+);
 
 module.exports = router;

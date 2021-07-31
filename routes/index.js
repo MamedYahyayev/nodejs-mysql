@@ -6,6 +6,8 @@ const indexController = require("../controllers/indexController");
 
 router.get("/", indexController.getIndexPage);
 
-router.get("/test", indexController.createDepartment);
+// router.get("/test", indexController.createDepartment);
+
+router.get("/test", indexController.selectQueryWithLike);
 
 module.exports = router;

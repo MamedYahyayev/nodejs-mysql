@@ -49,7 +49,8 @@ Group.belongsToMany(Employee, {
 });
 
 sequelize
-  .sync({ force: true })
+  .sync()
+  // .sync({ force: true })
   .then((result) => {
     app.listen(port, () => console.log(`app listening on port ${port}`));
   })

@@ -1,4 +1,4 @@
-const { Op } = require("sequelize/types");
+const { Op } = require("sequelize");
 const Department = require("../models/department");
 
 exports.getIndexPage = (req, res, next) => {
@@ -55,4 +55,21 @@ exports.selectQueryWithOr = (req, res, next) => {
   });
 };
 
-// https://sequelize.org/master/manual/model-querying-basics.html#operators
+exports.selectQueryWithLike = (req, res, next) => {
+  return Department.create({ name: "Department A" }).then((result) => {
+    Department.findAll({
+      where: {
+        name: {
+          [Op.like]: "Depar%",
+        },
+      },
+    }).then((departments) => {
+      console.log("like operator find departments: ", departments);
+      res.render("test", {
+        pageTitle: "Test",
+        path: "/test",
+        departments,
+      });
+    });
+  });
+};

@@ -1,3 +1,5 @@
+const { Op } = require("sequelize");
+
 const Employee = require("../models/employee");
 const Address = require("../models/address");
 
@@ -105,3 +107,102 @@ exports.deleteEmployee = (req, res, next) => {
 function findEmployeeById(employeeId) {
   return Employee.findOne({ where: { id: employeeId } });
 }
+
+exports.findEmployeeBySalary = (req, res, next) => {
+  return Employee.findAll({
+    where: {
+      salary: {
+        [Op.gt]: 1000,
+      },
+    },
+  })
+    .then((employees) => {
+      console.log("find Employee by salary: ", employees);
+      res.render("employees", {
+        pageTitle: "Employees",
+        path: "/employees",
+        employees: employees,
+      });
+    })
+    .catch((err) => console.error(err));
+};
+
+exports.findEmployeeBySalaryBetween = (req, res, next) => {
+  return Employee.findAll({
+    where: {
+      salary: {
+        [Op.between]: [1000, 1500],
+      },
+    },
+  })
+    .then((employees) => {
+      console.log("find Employee by salary between: ", employees);
+      res.render("employees", {
+        pageTitle: "Employees",
+        path: "/employees",
+        employees: employees,
+      });
+    })
+    .catch((err) => console.error(err));
+};
+
+exports.findEmployeeByIdWithInOperator = (req, res, next) => {
+  return Employee.findAll({
+    where: {
+      id: [1, 2, 3],
+    },
+  })
+    .then((employees) => {
+      console.log("find Employee by id with in operator: ", employees);
+      res.render("employees", {
+        pageTitle: "Employees",
+        path: "/employees",
+        employees: employees,
+      });
+    })
+    .catch((err) => console.error(err));
+};
+
+exports.updateEmployeeBySurname = (req, res, next) => {
+  return Employee.update(
+    { surname: "Zakirov" },
+    {
+      where: {
+        surname: "dsadas",
+      },
+    }
+  )
+    .then((employee) => {
+      console.log("update employee by surname: ", employee);
+      res.redirect("/employees");
+    })
+    .catch((err) => console.error(err));
+};
+
+exports.deleteEmployeeBySalaryBetween = (req, res, next) => {
+  return Employee.destroy({
+    where: {
+      salary: {
+        [Op.between]: [1200, 1500],
+      },
+    },
+  })
+    .then((employee) => {
+      console.log("delete employee by salary between: ", employee);
+      res.redirect("/employees");
+    })
+    .catch((err) => console.error(err));
+};
+
+exports.truncateEmployeeTable = (req, res, next) => {
+  return Employee.destroy({ truncate: true })
+    .then((employee) => {
+      console.log("truncate employee table: ", employee);
+      res.redirect("/employees");
+    })
+    .catch((err) => console.error(err));
+};
+
+
+
+// https://sequelize.org/master/manual/model-querying-basics.html#ordering-and-grouping
