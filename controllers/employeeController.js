@@ -2,6 +2,7 @@ const { Op } = require("sequelize");
 
 const Employee = require("../models/employee");
 const Address = require("../models/address");
+const sequelize = require("../utils/database");
 
 exports.getEmployeesPage = (req, res, next) => {
   Employee.findAll()
@@ -203,6 +204,69 @@ exports.truncateEmployeeTable = (req, res, next) => {
     .catch((err) => console.error(err));
 };
 
+exports.orderEmployeeByName = (req, res, next) => {
+  return Employee.findAll({
+    order: [["name"]],
+  })
+    .then((employees) => {
+      console.log("order employee employees: ", employees);
+      res.render("employees", {
+        path: "/employees",
+        employees: employees,
+        pageTitle: "Employees",
+      });
+    })
+    .catch((err) => console.error(err));
+};
 
+exports.groupEmployeeBySalary = (req, res, next) => {
+  return Employee.findAll({
+    group: ["salary"],
+    attributes: [sequelize.fn("count", sequelize.col("id")), "salary"],
+  })
+    .then((employees) => {
+      console.log("group employee by salary: ", employees);
+      res.render("employees", {
+        path: "/employees",
+        employees: employees,
+        pageTitle: "Employees",
+      });
+    })
+    .catch((err) => console.error(err));
+};
 
-// https://sequelize.org/master/manual/model-querying-basics.html#ordering-and-grouping
+exports.countEmployee = (req, res, next) => {
+  return Employee.count()
+    .then((count) => {
+      console.log("employees count: ", count);
+      res.redirect("/employees");
+    })
+    .catch((err) => console.error(err));
+};
+
+exports.maxSalaryOfEmployee = (req, res, next) => {
+  return Employee.max("salary")
+    .then((maxSalary) => {
+      console.log("max salary: ", maxSalary);
+      res.redirect("/employees");
+    })
+    .catch((err) => console.log(err));
+};
+
+exports.minSalaryOfEmployee = (req, res, next) => {
+  return Employee.min("salary")
+    .then((minSalary) => {
+      console.log("minSalary: ", minSalary);
+      res.redirect("/employees");
+    })
+    .catch((err) => console.log(err));
+};
+
+exports.sumOfSalaryOfEmployee = (req, res, next) => {
+  return Employee.sum("salary")
+    .then((sumOfSalary) => {
+      console.log("max salary: ", sumOfSalary);
+      res.redirect("/employees");
+    })
+    .catch((err) => console.log(err));
+};

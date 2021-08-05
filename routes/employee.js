@@ -51,4 +51,19 @@ router.get(
   employeeController.truncateEmployeeTable
 );
 
+router.get("/order-employee-by-name", employeeController.orderEmployeeByName);
+
+router.get(
+  "/group-employee-by-salary",
+  employeeController.groupEmployeeBySalary
+);
+
+router.get("/count-employee", employeeController.countEmployee);
+
+router.get("/max-salary-employee", employeeController.maxSalaryOfEmployee);
+
+router.get("/min-salary-employee", employeeController.minSalaryOfEmployee);
+
+router.get("/sum-salary-employee", employeeController.sumOfSalaryOfEmployee);
+
 module.exports = router;
